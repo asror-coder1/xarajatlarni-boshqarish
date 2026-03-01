@@ -15,6 +15,7 @@ const financeTracker = {
     const list = document.getElementById("expenses");
     list.innerHTML = "";
 
+    
     this.expenses.forEach((item) => {
       const li = document.createElement("li");
       li.innerHTML = `
