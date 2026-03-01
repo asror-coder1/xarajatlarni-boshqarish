@@ -1,30 +1,39 @@
-// Moliyaviy xarajatlarni boshqarish tizimi
 const financeTracker = {
-    owner: "Asror Coder",
-    balance: 5000,
-    expenses: [
-        { title: "Internet", amount: 150, category: "Utility" },
-        { title: "Kurs", amount: 500, category: "Education" }
-    ],
+  owner: "Asror Coder",
+  balance: 5000,
+  expenses: [],
 
-    // Yangi xarajat qo'shish
-    addExpense(name, cost, cat) {
-        this.expenses.push({ title: name, amount: cost, category: cat });
-        this.balance -= cost;
-        console.log(`💸 Xarajat qo'shildi: ${name} (-${cost}$)`);
-    },
+  addExpense(name, cost, cat) {
+    this.expenses.push({ title: name, amount: cost, category: cat });
+    this.balance -= cost;
+    this.render();
+  },
 
-    // Hisobotni ko'rish
-    showReport() {
-        console.log(`\n--- ${this.owner} uchun hisobot ---`);
-        console.log(`Joriy balans: ${this.balance}$`);
-        console.log("Barcha xarajatlar:");
-        this.expenses.forEach(item => {
-            console.log(`- ${item.title}: ${item.amount}$ [${item.category}]`);
-        });
-    }
+  render() {
+    document.getElementById("balance").textContent = "$" + this.balance;
+
+    const list = document.getElementById("expenses");
+    list.innerHTML = "";
+
+    this.expenses.forEach((item) => {
+      const li = document.createElement("li");
+      li.innerHTML = `
+        ${item.title} - $${item.amount}
+        <span>${item.category}</span>
+      `;
+      list.appendChild(li);
+    });
+  },
 };
 
-// Ishlatib ko'ramiz
-financeTracker.addExpense("Tushlik", 50, "Food");
-financeTracker.showReport();
+document.getElementById("expenseForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const title = document.getElementById("title").value;
+  const amount = +document.getElementById("amount").value;
+  const category = document.getElementById("category").value;
+
+  financeTracker.addExpense(title, amount, category);
+
+  e.target.reset();
+});

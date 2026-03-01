@@ -1,11 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finance Tracker</title>
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-    <script src="./app.js"></script>
+
+  <div class="container">
+    <div class="card">
+      <h1>💰 Finance Tracker</h1>
+      <h3 id="owner">Asror Coder</h3>
+
+      <div class="balance">
+        <p>Joriy Balans</p>
+        <h2 id="balance">$5000</h2>
+      </div>
+
+      <form id="expenseForm">
+        <input type="text" id="title" placeholder="Xarajat nomi" required />
+        <input type="number" id="amount" placeholder="Summa $" required />
+        <input type="text" id="category" placeholder="Kategoriya" required />
+        <button type="submit">➕ Qo'shish</button>
+      </form>
+
+      <div class="expense-list">
+        <h3>Xarajatlar</h3>
+        <ul id="expenses"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="./app.js"></script>
 </body>
 </html>
